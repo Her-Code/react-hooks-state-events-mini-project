@@ -1,21 +1,19 @@
-// src/components/App.js
-import React, { useState } from 'react';
-import TaskList from './TaskList';
+import React from "react";
+import Task from "./Task";
 
-const App = () => {
-  const [tasks, setTasks] = useState(/* initial tasks */);
-
-  const handleTaskDelete = (taskId) => {
-    setTasks(tasks.filter(task => task.id !== taskId));
-  };
-
+function TaskList({ tasks, onDeleteTask }) {
   return (
-    <div>
-      <TaskList tasks={tasks} onTaskDelete={handleTaskDelete} />
+    <div className="tasks">
+      {tasks.map((task) => (
+        <Task
+          key={task.text}
+          text={task.text}
+          category={task.category}
+          onDeleteTask={onDeleteTask}
+        />
+      ))}
     </div>
   );
-};
+}
 
-export default App;
-
-
+export default TaskList;
