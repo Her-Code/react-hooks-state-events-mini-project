@@ -1,11 +1,21 @@
-import React from "react";
+// src/components/App.js
+import React, { useState } from 'react';
+import TaskList from './TaskList';
 
-function TaskList() {
+const App = () => {
+  const [tasks, setTasks] = useState(/* initial tasks */);
+
+  const handleTaskDelete = (taskId) => {
+    setTasks(tasks.filter(task => task.id !== taskId));
+  };
+
   return (
-    <div className="tasks">
-      {/* display a list of tasks using Task component */}
+    <div>
+      <TaskList tasks={tasks} onTaskDelete={handleTaskDelete} />
     </div>
   );
-}
+};
 
-export default TaskList;
+export default App;
+
+
